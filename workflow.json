@@ -1,0 +1,63 @@
+{
+  "name": "GitHub Commit to Telegram Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "github-commit",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "7ca64bb9-4e4b-4a5f-9e7c-87d4615a6b0c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=New commit in *{{ $json.body.repository.name }}* by {{ $json.body.head_commit.author.name }}:\n\"{{ $json.body.head_commit.message }}\"\n\nLink: {{ $json.body.head_commit.url }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "e0bfa9da-ee4e-4f32-bb91-039cfaebc03e",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-creds-id",
+          "name": "Telegram API Creds"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {}
+}
