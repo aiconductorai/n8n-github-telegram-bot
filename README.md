@@ -43,11 +43,6 @@ graph LR
 ## 🚀 Quick Start Guide
 
 ### Step 1: Open the local n8n interface
-- Click to open: **[http://localhost:5678](http://localhost:5678)**
-- Log in using the pre-configured credentials:
-  - **Email:** `kiril@local.host`
-  - **Password:** `password123`
-
 ### Step 2: Start n8n Local Server with a Tunnel
 Run the helper PowerShell script:
 ```powershell
